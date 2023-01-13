@@ -1,0 +1,13 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+img{
+    height: 275px;
+    width: 275px;
+    display: block;
+    margin: 0px auto;
+
+}
