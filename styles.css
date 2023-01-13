@@ -12,7 +12,17 @@ img{
 
 }
 
-body{
+p1{
+    margin-left: 50 px;
+    margin-right: 50 px;
+}
+
+p2{
+    margin-left: 50 px;
+    margin-right: 50 px;
+}
+
+p3{
     margin-left: 50 px;
     margin-right: 50 px;
 }
