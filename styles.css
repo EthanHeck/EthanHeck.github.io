@@ -15,14 +15,23 @@ img{
 p1{
     margin-left: 50 px;
     margin-right: 50 px;
+    text-align: center;
+    font-size: medium;
+    background-color: darkseagreen;
 }
 
 p2{
     margin-left: 50 px;
     margin-right: 50 px;
+    text-align: center;
+    font-size: medium;
+    background-color: darkolivegreen ;
 }
 
 p3{
     margin-left: 50 px;
     margin-right: 50 px;
+    text-align: center;
+    font-size: medium;
+    background-color:darkseagreen;
 }
