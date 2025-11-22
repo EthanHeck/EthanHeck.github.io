@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Portfolio</title>
+  <link rel="stylesheet" href="static/styles.css">
+  <style>
+    .contact-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .contact-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(120deg, #60a5fa, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-header p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-card {
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(15, 23, 42, 0.8));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(79, 156, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .contact-card:hover::before {
+      left: 100%;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.3);
+    }
+
+    .contact-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-card h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: rgba(79, 156, 255, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      background: var(--accent);
+      color: var(--bg);
+      transform: scale(1.05);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(15, 23, 42, 0.8));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    }
+
+    .social-link span {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-header h1 {
+        font-size: 2rem;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="wrapper nav">
+        <div class="nav-left">
+          <div class="avatar-circle">
+            <span>YN</span>
+          </div>
+          <div class="brand-text">
+            <strong>Ethan Heck</strong>
+            <span>Portfolio</span>
+          </div>
+        </div>
+        <nav class="nav-links" id="navLinks">
+          <a href="ix.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="skills.html">Skills</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="contact">
+        <div class="contact-container">
+          <div class="contact-header">
+            <h1>Let's Connect</h1>
+            <p>I'm always open to discussing new opportunities, collaborations, or just chatting about data science and public health.</p>
+          </div>
+
+          <!-- Primary Contact Methods -->
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-icon">📧</div>
+              <h3>Email</h3>
+              <p>Best for professional inquiries and detailed discussions</p>
+              <a href="mailto:ethanheck@outlook.com">Send Email</a>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">💼</div>
+              <h3>LinkedIn</h3>
+              <p>Connect with me professionally and view my network</p>
+              <a href="https://www.linkedin.com/in/ethan-heck-776093252/" target="_blank" rel="noopener noreferrer">View Profile</a>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">💻</div>
+              <h3>GitHub</h3>
+              <p>Check out my code and open source contributions</p>
+              <a href="https://github.com/EthanHeck" target="_blank" rel="noopener noreferrer">View Repositories</a>
+            </div>
+          </div>
+
+          <!-- Optional: Download Resume -->
+          <div style="text-align: center; margin-top: 3rem;">
+            <a href="static/pdfs/Resume_2025.pdf" download class="btn-primary" style="display: inline-block; padding: 1rem 2rem; text-decoration: none;">
+              📄 Download Resume
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+ 
+
+  <script>
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.addEventListener("click", (e) => {
+      if (e.target.tagName === "A" && navLinks.classList.contains("open")) {
+        navLinks.classList.remove("open");
+      }
+    });
+  </script>
+</body>
+</html>

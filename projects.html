@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Portfolio</title>
+  <link rel="stylesheet" href="static/styles.css">
+  <style>
+    .project-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .project-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      overflow-x: auto;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-tabs::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .project-tabs::-webkit-scrollbar-track {
+      background: rgba(31, 41, 55, 0.5);
+      border-radius: 10px;
+    }
+
+    .project-tabs::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 10px;
+    }
+
+    .project-tab {
+      flex-shrink: 0;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(31, 41, 55, 0.7));
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-tab::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(79, 156, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .project-tab:hover::before {
+      left: 100%;
+    }
+
+    .project-tab:hover {
+      transform: translateY(-3px);
+      border-color: rgba(59, 130, 246, 0.5);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    }
+
+    .project-tab.active {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(15, 23, 42, 0.95));
+      border-color: var(--accent);
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
+    }
+
+    .project-tab h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .project-tab .tech-tags {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .project-tab .tech-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(79, 156, 255, 0.15);
+      color: var(--accent);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .project-content-wrapper {
+      position: relative;
+      min-height: 400px;
+    }
+
+    .project-detail {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .project-detail.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .project-header-section {
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(15, 23, 42, 0.8));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 16px;
+    }
+
+    .project-header-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(120deg, #60a5fa, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .project-description {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    /* Style for links within project descriptions */
+    .project-description a {
+      color: var(--accent);
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .project-description a:hover {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .image-carousel {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 2rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      padding: 1rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+
+    .carousel-button:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+
+    .carousel-button.next {
+      right: 10px;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .indicator.active {
+      background: var(--accent);
+    }
+
+    .pdf-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 3rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .pdf-container iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .project-tab {
+        padding: 0.8rem 1.5rem;
+      }
+
+      .carousel-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .pdf-container iframe {
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="wrapper nav">
+        <div class="nav-left">
+          <div class="avatar-circle">
+            <span>EH</span>
+          </div>
+          <div class="brand-text">
+            <strong>Ethan Heck</strong>
+            <span>Portfolio</span>
+          </div>
+        </div>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="skills.html">Skills</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="projects">
+        <div class="project-container">
+          <h1 style="text-align: center; margin-bottom: 2rem;">My Projects</h1>
+
+          <!-- Project Tabs -->
+          <div class="project-tabs">
+            <div class="project-tab active" onclick="switchProject(0)">
+              <h3>BRFSS Dashboard</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">R Shiny</span>
+                <span class="tech-tag">ggplot2</span>
+                <span class="tech-tag">Frequency Analysis</span>
+              </div>
+            </div>
+
+            <div class="project-tab" onclick="switchProject(1)">
+              <h3>Atlas</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">R Shiny</span>
+                <span class="tech-tag">ggplot</span>
+                <span class="tech-tag">Survival Analysis</span>
+              </div>
+            </div>
+
+            <div class="project-tab" onclick="switchProject(2)">
+              <h3>Predicting Salamander Abundance</h3>
+              <div class="tech-tags">
+                <span class="tech-tag">R</span>
+                <span class="tech-tag">Data Cleaning</span>
+                <span class="tech-tag">Occupancy Modeling</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Content -->
+          <div class="project-content-wrapper">
+            <!-- Project 1: BRFSS Dashboard -->
+            <div class="project-detail active" id="project-0">
+              <div class="project-header-section">
+                <h2>BRFSS Dashboard</h2>
+                <p class="project-description">
+                  While interning at the KDPH, I led the development of an R-shiny app to fill a department need. Due to the partial functionality of the current BRFSS dashboard from CDC, the dept needed a new shiny app for internal use. This app uses R shiny, ggplot2, and gt table (in addition to other packages) to take user input and dynamically populate the dashboard with an automatically downloaded PDF.
+                </p>
+              </div>
+
+              <!-- Image Carousel -->
+              <div class="image-carousel">
+                <div class="carousel-images" id="carouselImages-0">
+                  <img src="static/images/vis2.png" alt="Dashboard Screenshot 1">
+                  <img src="static/images/vis1.png" alt="Dashboard Screenshot 2">
+                  <img src="static/images/vis3.png" alt="Dashboard Screenshot 3">
+                </div>
+                <button class="carousel-button prev" onclick="moveSlide(0, -1)">‹</button>
+                <button class="carousel-button next" onclick="moveSlide(0, 1)">›</button>
+              </div>
+              
+              <div class="carousel-indicators" id="indicators-0"></div>
+
+              <!-- PDF Embed -->
+              <h3 style="margin-top: 3rem; text-align: center;">PDF Report</h3>
+              <div class="pdf-container">
+                <iframe src="static/pdfs/KY_BRFSS_REPORT_2024.pdf" type="application/pdf"></iframe>
+              </div>
+              
+              <p style="text-align: center; margin-top: 1rem;">
+                <a href="static/pdfs/KY_BRFSS_REPORT_2024.pdf" download class="btn-primary">Download PDF Report</a>
+              </p>
+            </div>
+
+            <!-- Project 2: Atlas -->
+            <div class="project-detail" id="project-1">
+              <div class="project-header-section">
+                <h2>Atlas - Survival Analysis</h2>
+                <p class="project-description">
+                  While interning at the Kentucky Dept of Public Health, I worked under Dr. Adam Berrones to help develop the survival analysis portion of an R shiny app examining neurological cancer tumors. During this project, I developed a pipeline to take user input and dynamically generate Kaplan-Meier survival curves and Cox Proportional Hazard models to predict survival outcomes. I also implemented log rank test for pairwise comparisons between groups within the curves themselves. This project can be found <a href="https://kdph.shinyapps.io/atlas" target="_blank" rel="noopener noreferrer">here</a> under the survival tab. 
+                </p>
+              </div>
+              
+              <div style="text-align: center; margin: 2rem auto; max-width: 900px;">
+                <img src="static/images/Atlas.png" 
+                     alt="Atlas Survival Analysis Dashboard" 
+                     style="width: 100%; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);">
+              </div>
+            </div>
+
+            <!-- Project 3: Predicting Salamander abundance in SE -->
+            <div class="project-detail" id="project-2">
+              <div class="project-header-section">
+                <h2>Predicting Salamander Abundance based on Ecological Factors in Southeast Kentucky</h2>
+                <p class="project-description">
+                  While studying at Union Commonwealth University for Biology, I proposed and conducted a novel research project examining the effects of ecological landscapes on salamander abundance in southeast Kentucky. This project was conducted through the ACA and Ledford's Scholar. A video presentation of this project can be found <a href="https://youtu.be/6JV4tHCUE8c?si=OM0aHitnokiKYA9o" target="_blank" rel="noopener noreferrer">here</a>.
+                </p>
+              </div>
+              
+              <!-- PDF Embed -->
+              <h3 style="margin-top: 3rem; text-align: center;">PDF Report</h3>
+              <div class="pdf-container">
+                <iframe src="static/pdfs/sally.pdf" type="application/pdf"></iframe>
+              </div>
+              
+              <p style="text-align: center; margin-top: 1rem;">
+                <a href="static/pdfs/Resume_2025.pdf" download class="btn-primary">Download PDF Report</a>
+              </p>
+            </div>
+
+        </div>
+      </section>
+    </main>
+
+    
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.addEventListener("click", (e) => {
+      if (e.target.tagName === "A" && navLinks.classList.contains("open")) {
+        navLinks.classList.remove("open");
+      }
+    });
+
+    // Project switching
+    function switchProject(index) {
+      // Update tabs
+      const tabs = document.querySelectorAll('.project-tab');
+      tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+
+      // Update content
+      const projects = document.querySelectorAll('.project-detail');
+      projects.forEach((project, i) => {
+        project.classList.toggle('active', i === index);
+      });
+
+      // Scroll to content
+      document.querySelector('.project-content-wrapper').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'nearest' 
+      });
+
+      // Initialize carousel for this project if it exists
+      initCarousel(index);
+    }
+
+    // Carousel functionality
+    const carousels = {};
+
+    function initCarousel(projectIndex) {
+      const carouselImages = document.getElementById(`carouselImages-${projectIndex}`);
+      const indicatorsContainer = document.getElementById(`indicators-${projectIndex}`);
+      
+      if (!carouselImages || !indicatorsContainer) return;
+      if (carousels[projectIndex]) return; // Already initialized
+
+      const totalSlides = carouselImages.children.length;
+      
+      carousels[projectIndex] = {
+        currentSlide: 0,
+        carouselImages,
+        indicatorsContainer,
+        totalSlides
+      };
+
+      // Clear and create indicators
+      indicatorsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const indicator = document.createElement("div");
+        indicator.classList.add("indicator");
+        if (i === 0) indicator.classList.add("active");
+        indicator.addEventListener("click", () => goToSlide(projectIndex, i));
+        indicatorsContainer.appendChild(indicator);
+      }
+    }
+
+    function updateCarousel(projectIndex) {
+      const carousel = carousels[projectIndex];
+      if (!carousel) return;
+      
+      carousel.carouselImages.style.transform = `translateX(-${carousel.currentSlide * 100}%)`;
+      
+      const indicators = carousel.indicatorsContainer.children;
+      for (let i = 0; i < indicators.length; i++) {
+        indicators[i].classList.toggle("active", i === carousel.currentSlide);
+      }
+    }
+
+    function moveSlide(projectIndex, direction) {
+      const carousel = carousels[projectIndex];
+      if (!carousel) return;
+      
+      carousel.currentSlide += direction;
+      if (carousel.currentSlide < 0) carousel.currentSlide = carousel.totalSlides - 1;
+      if (carousel.currentSlide >= carousel.totalSlides) carousel.currentSlide = 0;
+      updateCarousel(projectIndex);
+    }
+
+    function goToSlide(projectIndex, slideIndex) {
+      const carousel = carousels[projectIndex];
+      if (!carousel) return;
+      
+      carousel.currentSlide = slideIndex;
+      updateCarousel(projectIndex);
+    }
+
+    // Initialize first project carousel
+    initCarousel(0);
+  </script>
+</body>
+</html>
