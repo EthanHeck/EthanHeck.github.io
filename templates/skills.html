@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills | Portfolio</title>
+  <link rel="stylesheet" href="static/styles.css">
+  <style>
+    .skills-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skills-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .skills-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(120deg, #60a5fa, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .skills-header p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .bubbles-container {
+      position: relative;
+      width: 100%;
+      height: 800px;
+      margin-top: 2rem;
+    }
+
+    .skill-bubble {
+      position: absolute;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(15, 23, 42, 0.9));
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: float 15s infinite ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-bubble:hover {
+      transform: scale(1.15);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+      z-index: 100;
+      animation-play-state: paused;
+    }
+
+    .skill-bubble span {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.85rem;
+      line-height: 1.2;
+    }
+
+    /* Size variations */
+    .size-small {
+      width: 90px;
+      height: 90px;
+    }
+
+    .size-medium {
+      width: 130px;
+      height: 130px;
+    }
+
+    .size-large {
+      width: 160px;
+      height: 160px;
+    }
+
+    /* Enhanced floating animations with more movement */
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      20% {
+        transform: translate(40px, -35px) rotate(8deg);
+      }
+      40% {
+        transform: translate(-35px, 30px) rotate(-8deg);
+      }
+      60% {
+        transform: translate(30px, 40px) rotate(6deg);
+      }
+      80% {
+        transform: translate(-40px, -30px) rotate(-6deg);
+      }
+    }
+
+    /* Tighter, more concentrated positions */
+    .bubble-1 { top: 8%; left: 12%; animation-duration: 14s; }
+    .bubble-2 { top: 5%; left: 38%; animation-duration: 16s; animation-delay: -2s; }
+    .bubble-3 { top: 10%; right: 15%; animation-duration: 15s; animation-delay: -5s; }
+    .bubble-4 { top: 25%; left: 18%; animation-duration: 13s; animation-delay: -3s; }
+    .bubble-5 { top: 28%; right: 28%; animation-duration: 17s; animation-delay: -7s; }
+    .bubble-6 { top: 42%; left: 10%; animation-duration: 12s; animation-delay: -4s; }
+    .bubble-7 { top: 40%; left: 42%; animation-duration: 18s; animation-delay: -6s; }
+    .bubble-8 { top: 45%; right: 12%; animation-duration: 14s; animation-delay: -8s; }
+    .bubble-9 { top: 60%; left: 22%; animation-duration: 15s; animation-delay: -2s; }
+    .bubble-10 { top: 58%; right: 32%; animation-duration: 13s; animation-delay: -5s; }
+    .bubble-11 { top: 75%; left: 12%; animation-duration: 16s; animation-delay: -9s; }
+    .bubble-12 { top: 72%; left: 45%; animation-duration: 17s; animation-delay: -3s; }
+    .bubble-13 { top: 78%; right: 16%; animation-duration: 14s; animation-delay: -7s; }
+    .bubble-14 { top: 18%; left: 58%; animation-duration: 15s; animation-delay: -4s; }
+    .bubble-15 { top: 52%; left: 28%; animation-duration: 13s; animation-delay: -6s; }
+    .bubble-16 { top: 35%; left: 65%; animation-duration: 16s; animation-delay: -8s; }
+    .bubble-17 { top: 62%; left: 58%; animation-duration: 12s; animation-delay: -10s; }
+    .bubble-18 { top: 88%; left: 32%; animation-duration: 18s; animation-delay: -5s; }
+
+    @media (max-width: 768px) {
+      .bubbles-container {
+        height: 1200px;
+      }
+      
+      .size-small {
+        width: 75px;
+        height: 75px;
+      }
+
+      .size-medium {
+        width: 105px;
+        height: 105px;
+      }
+
+      .size-large {
+        width: 135px;
+        height: 135px;
+      }
+
+      .skill-bubble span {
+        font-size: 0.7rem;
+      }
+
+      /* Adjust positions for mobile */
+      .bubble-1 { top: 3%; left: 5%; }
+      .bubble-2 { top: 2%; left: 50%; }
+      .bubble-3 { top: 5%; right: 5%; }
+      .bubble-4 { top: 15%; left: 8%; }
+      .bubble-5 { top: 18%; right: 10%; }
+      .bubble-6 { top: 28%; left: 5%; }
+      .bubble-7 { top: 30%; left: 55%; }
+      .bubble-8 { top: 32%; right: 5%; }
+      .bubble-9 { top: 42%; left: 10%; }
+      .bubble-10 { top: 45%; right: 12%; }
+      .bubble-11 { top: 55%; left: 5%; }
+      .bubble-12 { top: 58%; left: 50%; }
+      .bubble-13 { top: 60%; right: 8%; }
+      .bubble-14 { top: 70%; left: 8%; }
+      .bubble-15 { top: 72%; right: 10%; }
+      .bubble-16 { top: 82%; left: 10%; }
+      .bubble-17 { top: 85%; right: 12%; }
+      .bubble-18 { top: 95%; left: 35%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="wrapper nav">
+        <div class="nav-left">
+          <div class="avatar-circle">
+            <span>EH</span>
+          </div>
+          <div class="brand-text">
+            <strong>Ethan Heck</strong>
+            <span>Portfolio</span>
+          </div>
+        </div>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="skills.html">Skills</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="skills" class="skills-container">
+        <div class="skills-header">
+          <h1>Technical Skills</h1>
+          <p>A comprehensive toolkit for data analysis, statistical modeling, and visualization</p>
+        </div>
+        <div class="bubbles-container">
+          <div class="skill-bubble size-large bubble-1"><span>R</span></div>
+          <div class="skill-bubble size-medium bubble-2"><span>R Shiny</span></div>
+          <div class="skill-bubble size-large bubble-3"><span>Tidyverse</span></div>
+          <div class="skill-bubble size-medium bubble-4"><span>ggplot2</span></div>
+          <div class="skill-bubble size-large bubble-5"><span>Survival Analysis</span></div>
+          <div class="skill-bubble size-medium bubble-6"><span>Python</span></div>
+          <div class="skill-bubble size-small bubble-7"><span>Pandas</span></div>
+          <div class="skill-bubble size-small bubble-8"><span>SQL</span></div>
+          <div class="skill-bubble size-small bubble-9"><span>SAS</span></div>
+          <div class="skill-bubble size-medium bubble-10"><span>GLM</span></div>
+          <div class="skill-bubble size-medium bubble-11"><span>GLMMs</span></div>
+          <div class="skill-bubble size-small bubble-12"><span>GEEs</span></div>
+          <div class="skill-bubble size-large bubble-13"><span>Longitudinal Analysis</span></div>
+          <div class="skill-bubble size-medium bubble-14"><span>Logistic Regression</span></div>
+          <div class="skill-bubble size-medium bubble-15"><span>Poisson Regression</span></div>
+          <div class="skill-bubble size-large bubble-16"><span>Linear Regression</span></div>
+          <div class="skill-bubble size-medium bubble-17"><span>Negative Binomial</span></div>
+          <div class="skill-bubble size-large bubble-18"><span>Cox Models</span></div>
+        </div>
+      </section>
+    </main>
+
+
+  <script>
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.addEventListener("click", (e) => {
+      if (e.target.tagName === "A" && navLinks.classList.contains("open")) {
+        navLinks.classList.remove("open");
+      }
+    });
+  </script>
+</body>
+</html>
